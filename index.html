@@ -271,97 +271,117 @@
         }
       </style>
       <script type="text/javascript">
+        var c = setInterval(moveAuto,2000);
+        flag2=1;
+        function callOne()
+        {
+               $("#img1").attr('src','pink3.jpg');
+              $('#caption_slider').text($("#img1").attr('src'));
+              $('#d1').css('color','#212529');
+              $('#d2').css('color','white');
+              $('#d3').css('color','#212529');
+        }
+        function callTwo()
+        {
+              $("#img1").attr('src','pink2.jpg');
+              $('#caption_slider').text($("#img1").attr('src'));
+              $('#d1').css('color','#212529');
+              $('#d2').css('color','#212529');
+              $('#d3').css('color','white');
+        }
+        function callThree()
+        {
+              $("#img1").attr('src','pink1.jpg');
+              $('#caption_slider').text($("#img1").attr('src'));
+              $('#d1').css('color','white');
+              $('#d2').css('color','#212529');
+              $('#d3').css('color','#212529');
+        }
         $(document).ready(function(){
           var flag=1;
           var flag1=1;
           console.log('added');
           $("#left_slider").click(function(evt){
-            //$('#caption_slider').text('Bri');
+            clearInterval(c);
             evt.preventDefault()
             if(flag==1)
             {
-              
-              $("#img1").attr('src','pink3.jpg');
-              $('#caption_slider').text($("#img1").attr('src'));
-              $('#d1').css('color','#212529');
-              $('#d2').css('color','white');
-              $('#d3').css('color','#212529');
+                callOne();            
             }
             else if(flag==2)
             {
-              
-              $("#img1").attr('src','pink2.jpg');
-              $('#caption_slider').text($("#img1").attr('src'));
-              $('#d1').css('color','#212529');
-              $('#d2').css('color','#212529');
-              $('#d3').css('color','white');
+              callTwo();
             }
             else if(flag==3)
             {
-              
-              $("#img1").attr('src','pink1.jpg');
-              $('#caption_slider').text($("#img1").attr('src'));
-              $('#d1').css('color','white');
-              $('#d2').css('color','#212529');
-              $('#d3').css('color','#212529');
+              callThree();
               flag=0;
             }
             flag++;
+            c = setInterval(moveAuto,2000);
         });
           $("#right_slider").click(function(evt){
+            clearInterval(c);
             evt.preventDefault()
             if(flag1==1)
               {
-               $("#img1").attr('src','pink3.jpg');
-               $('#caption_slider').text($("#img1").attr('src'));
-               $('#d1').css('color','#212529');
-               $('#d2').css('color','white');
-               $('#d3').css('color','#212529');
+                callOne();
               }
             else if(flag1==2)
             {
-              $("#img1").attr('src','pink2.jpg');
-              $('#caption_slider').text($("#img1").attr('src'));
-              $('#d1').css('color','#212529');
-              $('#d2').css('color','#212529');
-              $('#d3').css('color','white');
+              callTwo();
             }
             else if(flag1==3)
             {
-              $("#img1").attr('src','pink1.jpg');
-              $('#caption_slider').text($("#img1").attr('src'));
-              $('#d1').css('color','white');
-              $('#d2').css('color','#212529');
-              $('#d3').css('color','#212529');
+              callThree();
               flag1=0;
             }
             flag1++;
+            c = setInterval(moveAuto,2000);
         });
           $('#d1').click(function(event) {
-            console.log('Clicked');
             $("#img1").attr('src','pink1.jpg');
             $('#caption_slider').text($("#img1").attr('src'));
             $('#d2').css('color','#212529');
             $('#d1').css('color','white');
             $('#d3').css('color','#212529');
+            flag2--;
           });
           $('#d2').click(function(event) {
-            console.log('Clicked');
             $("#img1").attr('src','pink3.jpg');
             $('#caption_slider').text($("#img1").attr('src'));
             $('#d2').css('color','white');
             $('#d1').css('color','#212529');
             $('#d3').css('color','#212529');
+            flag2--;
           });
             $('#d3').click(function(event) {
-            console.log('Clicked');
             $("#img1").attr('src','pink2.jpg');
             $('#caption_slider').text($("#img1").attr('src'));
             $('#d2').css('color','#212529');
             $('#d1').css('color','#212529');
             $('#d3').css('color','white');
+            flag2--;
           });
         });
+        function moveAuto()
+        {
+          if(flag2==1)
+              {
+                callOne();
+              }
+            else if(flag2==2)
+            {
+
+              callTwo();
+            }
+            else if(flag2==3)
+            {
+              callThree();
+              flag2=0;
+            }
+            flag2++;
+        }
       </script>
    </head>
    <body>
@@ -419,8 +439,8 @@
       <p id="caption_slider">pink1.jpg</p>
       <p id="slider_lHeading"> lorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsumlorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem </p>
     </div>
-    <a href="#" id="left_slider"><i class="fas fa-chevron-left nav_slider" style="left: 1.5%"></i></a>
-    <a href="#" id="right_slider"><i class="nav_slider fas fa-chevron-right" style="right: 1.5%"></i></a>
+    <a href="#" id="left_slider" onclick="moveLeft()"><i class="fas fa-chevron-left nav_slider" style="left: 1.5%"></i></a>
+    <a href="#" id="right_slider" onclick="moveRight()"><i class="nav_slider fas fa-chevron-right" style="right: 1.5%"></i></a>
       <div class="navig" id="dot_slider"> <!-- black dots at bottom -->
         <i id="d1" class="dots_slider fas fa-circle" style="color: white"></i>
         <i id="d2" class="dots_slider fas fa-circle"></i>
